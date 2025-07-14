@@ -6,12 +6,12 @@ export default function App() {
   const [newText, setNewText] = useState("");
 
   useEffect(() => {
-    axios.get("/todos").then(res => setTodos(res.data));
+    axios.get("https://render-flask-1-96dg.onrender.com/todos").then(res => setTodos(res.data));
   }, []);
 
   const addTodo = async () => {
     if (!newText.trim()) return;
-    const res = await axios.post("/todos", { text: newText });
+    const res = await axios.post("https://render-flask-1-96dg.onrender.com/todos", { text: newText });
     setTodos([...todos, res.data]);
     setNewText("");
   };
@@ -19,13 +19,13 @@ export default function App() {
   const updateTodo = async (id, text) => {
     const newText = prompt("Edit todo:", text);
     if (newText) {
-      await axios.put(`/todos/${id}`, { text: newText });
+      await axios.put(`https://render-flask-1-96dg.onrender.com/todos/${id}`, { text: newText });
       setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo));
     }
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`/todos/${id}`);
+    await axios.delete(`https://render-flask-1-96dg.onrender.com/todos/${id}`);
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
