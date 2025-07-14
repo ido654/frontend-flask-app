@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <div style={{ maxWidth: 400, margin: "auto", padding: 20, fontFamily: "sans-serif" }}>
-      <h2>📝 Todo List</h2>
+      <h2>📝 Todo NEW List</h2>
       <input
         value={newText}
         onChange={(e) => setNewText(e.target.value)}
