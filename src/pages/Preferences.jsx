@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 export default function Preferences() {
+  const API = process.env.REACT_APP_API_URL
   const { userId } = useParams()
   const navigate = useNavigate()
   const [userName, setUserName] = useState('')
@@ -18,7 +19,7 @@ export default function Preferences() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/users`)
+        const res = await axios.get(`${API}/users`)
         const user = res.data.find(u => u.user_id === parseInt(userId))
         if (!user) return setError('משתמש לא נמצא')
         setUserName(user.name)
@@ -33,8 +34,8 @@ export default function Preferences() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const shiftsRes = await axios.get('http://localhost:5000/api/shifts')
-        const constraintsRes = await axios.get('http://localhost:5000/api/constraints')
+        const shiftsRes = await axios.get(`${API}/shifts`)
+        const constraintsRes = await axios.get(`${API}/constraints`)
 
         setShifts(shiftsRes.data)
         const userConstraints = constraintsRes.data.filter(c => c.user_id === parseInt(userId))
@@ -64,7 +65,7 @@ export default function Preferences() {
     try {
       await Promise.all(
         Object.entries(constraints).map(([shift_id, key]) =>
-          axios.patch(`http://localhost:5000/api/constraints/${userId}/${shift_id}`, {
+          axios.patch(`${API}/constraints/${userId}/${shift_id}`, {
             available_key: key,
           })
         )
