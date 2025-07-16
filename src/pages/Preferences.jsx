@@ -17,6 +17,7 @@ export default function Preferences() {
 
   // טען שם משתמש
   useEffect(() => {
+    const API = process.env.REACT_APP_API_URL
     const fetchUser = async () => {
       try {
         const res = await axios.get(`${API}/users`)
@@ -32,6 +33,7 @@ export default function Preferences() {
 
   // טען משמרות ואילוצים
   useEffect(() => {
+    const API = process.env.REACT_APP_API_URL
     const fetchData = async () => {
       try {
         const shiftsRes = await axios.get(`${API}/shifts`)
