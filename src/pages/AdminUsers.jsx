@@ -11,9 +11,8 @@ export default function AdminUsers() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const API = process.env.REACT_APP_API_URL
     fetchUsers()
-  }, [])
+  }, [API])
 
   const fetchUsers = async () => {
     try {
