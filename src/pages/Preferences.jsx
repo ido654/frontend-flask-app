@@ -20,7 +20,7 @@ export default function Preferences() {
     const API = process.env.REACT_APP_API_URL
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${API}/users`)
+        const res = await axios.get(`${API}/users` ,{withCredentials: true})
         const user = res.data.find(u => u.user_id === parseInt(userId))
         if (!user) return setError('משתמש לא נמצא')
         setUserName(user.name)
@@ -36,7 +36,7 @@ export default function Preferences() {
     const API = process.env.REACT_APP_API_URL
     const fetchData = async () => {
       try {
-        const shiftsRes = await axios.get(`${API}/shifts`)
+        const shiftsRes = await axios.get(`${API}/shifts` , {withCredentials: true})
         const constraintsRes = await axios.get(`${API}/constraints`)
 
         setShifts(shiftsRes.data)

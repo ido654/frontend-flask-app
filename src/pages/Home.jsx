@@ -18,7 +18,7 @@ export default function Home() {
     }
 
     try {
-      const res = await axios.get(`${API}/users`)
+      const res = await axios.get(`${API}/users` , {withCredentials: true})
       const users = res.data
       const foundUser = users.find(u => u.name === name.trim())
       if (foundUser) {
