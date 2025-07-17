@@ -6,7 +6,9 @@ import '../styles/main.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Home() {
+
   const API = process.env.REACT_APP_API_URL
+  console.log("this is home page and we want to get data from" , API)
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -18,7 +20,7 @@ export default function Home() {
     }
 
     try {
-      const res = await axios.get(`${API}/users` , {withCredentials: true})
+      const res = await axios.get(`${API}/users`)
       const users = res.data
       const foundUser = users.find(u => u.name === name.trim())
       if (foundUser) {

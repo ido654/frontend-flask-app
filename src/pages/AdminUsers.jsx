@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useCallback } from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router-dom'
@@ -10,18 +10,19 @@ export default function AdminUsers() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  useEffect(() => {
-    fetchUsers()
-  }, [])
-
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       const res = await axios.get(`${API}/users`)
       setUsers(res.data)
     } catch (err) {
-      setError('שגיאה בטעינת המשתמשים')
+      console.error(err)
+      setError('שגיאה בשליפת משתמשים')
     }
-  }
+  }, [API]) // fetchUsers תלוי רק ב-API
+
+  useEffect(() => {
+    fetchUsers()
+  }, [fetchUsers]) 
 
   const handleAdd = async () => {
     if (!name.trim()) return setError('נא להזין שם תקין')
