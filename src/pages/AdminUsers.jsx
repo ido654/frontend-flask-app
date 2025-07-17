@@ -12,7 +12,7 @@ export default function AdminUsers() {
 
   useEffect(() => {
     fetchUsers()
-  }, [fetchUsers])
+  }, [])
 
   const fetchUsers = async () => {
     try {
