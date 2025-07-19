@@ -12,7 +12,7 @@ export default function AdminUsers() {
 
   const fetchUsers = useCallback(async () => {
     try {
-      const res = await axios.get(`${API}/users`)
+      const res = await axios.get(`${API}/users/`)
       setUsers(res.data)
     } catch (err) {
       console.error(err)
@@ -28,7 +28,7 @@ export default function AdminUsers() {
     if (!name.trim()) return setError('נא להזין שם תקין')
 
     try {
-      await axios.post(`${API}/users`, { name: name.trim() })
+      await axios.post(`${API}/users/`, { name: name.trim() })
       setName('')
       setError('')
       fetchUsers()
@@ -45,6 +45,7 @@ export default function AdminUsers() {
       fetchUsers()
     } catch (err) {
       setError('שגיאה במחיקה')
+      console.log(err)
     }
   }
 

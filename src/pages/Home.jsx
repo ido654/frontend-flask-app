@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export default function Home() {
 
   const API = process.env.REACT_APP_API_URL
-  console.log("this is home page and we want to get data from" , API)
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()

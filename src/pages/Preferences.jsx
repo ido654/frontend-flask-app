@@ -67,14 +67,13 @@ export default function Preferences() {
     try {
       await Promise.all(
         Object.entries(constraints).map(([shift_id, key]) =>
-          axios.patch(`${API}/constraints/${userId}/${shift_id}`, {
-            available_key: key,
-          })
+          axios.put(`${API}/constraints/${userId}/${shift_id}`, {available_key: key })
         )
       )
       alert('העדפות נשמרו בהצלחה!')
     } catch (err) {
       alert('שגיאה בשמירה')
+      console.log(err)
     }
   }
 
